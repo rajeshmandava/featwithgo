@@ -1,29 +1,24 @@
 package main
 
-import(
+import (
 	"fmt"
-	"log"
-	"example.com/greetings"
+	//"os/user"
 )
 
 func main() {
-	// Set properties of the predefined logger, including
-	// the log entry prefix and a flag to disable printing
-	// the time, source file, and line number.
+	var conferenceName = "Go Conference"
+	const conferenceTickets = 50
+	var remainingTickets = 50
 
-	log.SetPrefix("greetings: ")
-	log.SetFlags(0)
+	fmt.Printf("conferenceTickets is %T, remainingTickets is %T, conferenceName is %T\n", conferenceTickets, remainingTickets, conferenceName)
+	fmt.Printf("Welcome to %v booking application\n", conferenceName)
+	fmt.Printf("We have total of %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
+	fmt.Println("Get your tickets here to attend")
 
-	//Request a greeting message.
+	var userName string
+	var userTickets int
 
-	message, err := greetings.Hello("Gladys")
-	// If an error was returned, print it to the console and 
-	// exit the program.
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// If no error was returned, print the returned message
-	// to the console.
-	fmt.Println(message)
+	userName = "Tom"
+	userTickets = 2
+	fmt.Printf("user %v booked %v tickets.\n", userName, userTickets)
 }
