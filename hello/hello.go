@@ -17,7 +17,7 @@ func main() {
 	fmt.Println("Get your tickets here to attend")
 
 	var bookings []string
-
+	fmt.Println("test print")
 	for {
 		var firstName string
 		var lastName string
