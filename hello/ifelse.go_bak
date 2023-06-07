@@ -1,0 +1,12 @@
+package utilities
+
+import "fmt"
+
+func testCondition() {
+
+	var depositAmount int
+	fmt.Println("Enter deposit amount")
+	fmt.Scanf("%s", depositAmount)
+
+	fmt.Printf("The entered deposit amount%v", depositAmount)
+}
