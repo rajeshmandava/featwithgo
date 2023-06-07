@@ -3,8 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"math"
+	"math/big"
 	"math/rand"
+	"runtime"
 	"time"
+	"unicode"
 	//"os/user"
 )
 
@@ -91,9 +95,24 @@ func main() {
 	// LoopNames()
 	// LoopOverMap()
 	// BreakContinue()
-	BubbleSort()
-	fmt.Println("Test again")
-
+	// BubbleSort()
+	// fmt.Println("Test again")
+	// if PasswordChecker("") {
+	// 	fmt.Println("Password good")
+	// } else {
+	// 	fmt.Println("Password bad")
+	// }
+	// if PasswordChecker("This!I5A") {
+	// 	fmt.Println("Password good")
+	// } else {
+	// 	fmt.Println("Password bad")
+	// }
+	// MemoryTest()
+	// FloatingPoint()
+	// OverFlow()
+	// BigNumbers()
+	// StringText()
+	MultiByteCharacter()
 }
 
 func TestIfElse() {
@@ -230,4 +249,107 @@ func BubbleSort() {
 		}
 	}
 	fmt.Println("After:", nums)
+}
+
+func PasswordChecker(pw string) bool {
+	pwR := []rune(pw)
+	if len(pwR) < 8 {
+		return false
+	}
+	if len(pwR) > 15 {
+		return false
+	}
+
+	hasUpper := false
+	hasLower := false
+	hasNumber := false
+	hasSymbol := false
+
+	for _, v := range pwR {
+		if unicode.IsUpper(v) {
+			hasUpper = true
+		}
+		if unicode.IsLower(v) {
+			hasLower = true
+		}
+		if unicode.IsNumber(v) {
+			hasNumber = true
+		}
+		if unicode.IsPunct(v) || unicode.IsSymbol(v) {
+			hasSymbol = true
+		}
+	}
+	return hasUpper && hasLower && hasNumber && hasSymbol
+}
+
+func MemoryTest() {
+	var list []int8
+	for i := 0; i <= 100000000; i++ {
+		list = append(list, 100)
+	}
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	fmt.Printf("TotalAlloc (Heap) = %v MiB\n", m.TotalAlloc/1024/1024)
+}
+
+func FloatingPoint() {
+	var a int = 100
+	var b float32 = 100
+	var c float64 = 100
+
+	fmt.Println(a / 3)
+	fmt.Println(b / 3)
+	fmt.Println(c / 3)
+
+	fmt.Println((a / 3) * 3)
+	fmt.Println((b / 3) * 3)
+	fmt.Println((c / 3) * 3)
+}
+
+func OverFlow() {
+	var a int8 = 125
+	var b uint8 = 253
+	for i := 0; i < 5; i++ {
+		a++
+		b++
+		fmt.Println(i, ")", "int8", a, "uint8", b)
+	}
+}
+
+func BigNumbers() {
+	intA := math.MaxInt64
+	intA += 1
+	bigA := big.NewInt(math.MaxInt64)
+	bigA.Add(bigA, big.NewInt(1))
+
+	fmt.Println("MaxInt64 :", math.MaxInt64)
+	fmt.Println("Int :", intA)
+	fmt.Println("Big Int :", bigA.String())
+}
+
+func StringText() {
+	comment1 := `This is the BEST
+	thing ever!`
+	comment2 := `This is the BEST\nthing ever!`
+	comment3 := "This is the BEST\nthing ever!"
+
+	fmt.Print(comment1, "\n\n")
+	fmt.Print(comment2, "\n\n")
+	fmt.Print(comment3, "\n")
+
+	comment1 = `In "Windows" the user directory is "C:\Users\"`
+	comment2 = "In \"Windows\" the user directory is \"C:\\Users\\\""
+
+	fmt.Println(comment1)
+	fmt.Println(comment2)
+
+}
+
+func MultiByteCharacter() {
+	username := "Sir_King_ärya"
+	runes := []rune(username)
+
+	for i := 0; i < len(runes); i++ {
+		fmt.Print(string(runes[i]), " ")
+	}
 }
