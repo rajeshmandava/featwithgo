@@ -112,7 +112,18 @@ func main() {
 	// OverFlow()
 	// BigNumbers()
 	// StringText()
-	MultiByteCharacter()
+	// MultiByteCharacter()
+	// SafelyLoopOverString()
+	// LengthOfMultiByte()
+	// TheNilValue()
+
+	taxTotal := .0
+	taxTotal += SalesTaxCalculator(.99, 0.075)
+
+	taxTotal += SalesTaxCalculator(2.75, 0.015)
+
+	taxTotal += SalesTaxCalculator(.87, 0.02)
+	fmt.Println("Sales Tax Total:", taxTotal)
 }
 
 func TestIfElse() {
@@ -352,4 +363,50 @@ func MultiByteCharacter() {
 	for i := 0; i < len(runes); i++ {
 		fmt.Print(string(runes[i]), " ")
 	}
+}
+
+func SafelyLoopOverString() {
+	logLevel := "コ案ヨさ"
+	for index, runeVal := range logLevel {
+		fmt.Println(index, string(runeVal))
+	}
+}
+
+func LengthOfMultiByte() {
+	username := "Sir_King_ärya"
+	fmt.Println("Bytes :", len(username))
+	fmt.Println("Runes :", len([]rune(username)))
+
+	//Limit to 10 characters
+	fmt.Println(string(username[:10]))
+	fmt.Println(string([]rune(username)[:10]))
+}
+
+func TheNilValue() {
+	m := "This is text value"
+	var message *string
+	message = &m
+	if message == nil {
+		fmt.Println("error, unexpected nil value")
+		return
+	}
+	fmt.Println(*message)
+}
+
+func SalesTaxCalculator(cost float64, taxRate float64) float64 {
+	return cost * taxRate
+}
+
+func LoanCalculator()
+{
+	var creditScore int
+	var income int
+	var loanAmount int
+	var loanTerm int
+	var monthlyPayment float64
+	var rate int
+	var totalCost int
+	var approved bool
+
+	//To be continued ...
 }
