@@ -12,6 +12,19 @@ import (
 	//"os/user"
 )
 
+const (
+	goodScore = 450
+	lowScoreRatio = 10
+	goodScoreRatio = 20
+)
+
+var(
+	ErrCreditScore = errors.New("Invalid credit score")
+	ErrIncome = errors.New("income invalid")
+	ErrLoanAmount = errors.New("loan amount invalid")
+	ErrLoanTerm = errors.New("loan term not a multiple of 12")
+)
+
 func main() {
 	// var conferenceName string = "Go Conference"
 	// const conferenceTickets int = 50
@@ -117,13 +130,14 @@ func main() {
 	// LengthOfMultiByte()
 	// TheNilValue()
 
-	taxTotal := .0
-	taxTotal += SalesTaxCalculator(.99, 0.075)
+//	taxTotal := .0
+	//taxTotal += SalesTaxCalculator(.99, 0.075)
 
-	taxTotal += SalesTaxCalculator(2.75, 0.015)
+	//taxTotal += SalesTaxCalculator(2.75, 0.015)
 
-	taxTotal += SalesTaxCalculator(.87, 0.02)
-	fmt.Println("Sales Tax Total:", taxTotal)
+	//taxTotal += SalesTaxCalculator(.87, 0.02)
+	//fmt.Println("Sales Tax Total:", taxTotal)
+	LoanCalculator()
 }
 
 func TestIfElse() {
@@ -397,16 +411,68 @@ func SalesTaxCalculator(cost float64, taxRate float64) float64 {
 	return cost * taxRate
 }
 
-func LoanCalculator()
-{
-	var creditScore int
-	var income int
-	var loanAmount int
-	var loanTerm int
-	var monthlyPayment float64
-	var rate int
-	var totalCost int
-	var approved bool
+func checkLoan(creditScore int, income float64, loanAmount float64, loanTerm float64) error {
+	interest :=20.0
+	if creditScore >= goodScore {
+		interest = 15.0
+	}
+	if creditScore < 1 {
+		return ErrCreditScore
+	}
+	if loanAmount < 1 {
+		return ErrLoanAmount
+	}
+	if loanTerm < 1 || int(loanTerm)%12 != 0 {
+		return ErrLoanTerm
+	}
+	rate := interest/100
 
-	//To be continued ...
+	payment := ((loanAmount * rate) / loanTerm) + (loanAmount / loanTerm)
+	totalInterest := (payment * loanTerm) - loanAmount
+	approved :=false
+	if income > payment { 
+		ratio := (payment / income) * 100 
+		if creditScore >= goodScore && ratio < goodScoreRatio {
+			approved = true
+		} else if ratio < lowScoreRatio {
+			approved = false
+		}
+	}
+
+	fmt.Println("Credit Score :", creditScore)
+	fmt.Println("Income :", income)
+	fmt.Println("Loan Amount : ", loanAmount)
+	fmt.Println("Loan Term :", loanTerm)
+	fmt.Println("Monthly Payment :", payment)
+	fmt.Println("Rate :", interest)
+	fmt.Println("Total Cost :", totalInterest)
+	fmt.Println("Approved :", approved)
+	fmt.Println("")
+
+	return nil
+
+}
+
+
+func LoanCalculator(){
+	//Approved
+	fmt.Println("Applicant 1")
+	fmt.Println("------------")
+	err := checkLoan(500, 1000, 1000, 24)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	//Denied
+	fmt.Println("Applicant 2")
+	fmt.Println("------------")
+	err = checkLoan(350, 1000, 10000, 12)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
 }
