@@ -10,6 +10,7 @@ import (
 	"time"
 	"unicode"
 	//"os/user"
+	"example/coretypes"
 )
 
 const (
@@ -130,15 +131,26 @@ func main() {
 	// LengthOfMultiByte()
 	// TheNilValue()
 
+	// MemoryTest()
+	// MemoryTest()
+	// MemoryTest()
+	// MemoryTest()
 //	taxTotal := .0
 	//taxTotal += SalesTaxCalculator(.99, 0.075)
+//	taxTotal := .0
+//	taxTotal := .0
+//	taxTotal := .0
 
 	//taxTotal += SalesTaxCalculator(2.75, 0.015)
 
 	//taxTotal += SalesTaxCalculator(.87, 0.02)
 	//fmt.Println("Sales Tax Total:", taxTotal)
-	LoanCalculator()
+	//LoanCalculator()
+//	ComplexTypes()
+	var message string= coretypes.TestCoreTypes()
+	fmt.Print(message)
 }
+
 
 func TestIfElse() {
 	var num int
@@ -366,6 +378,7 @@ func StringText() {
 	comment2 = "In \"Windows\" the user directory is \"C:\\Users\\\""
 
 	fmt.Println(comment1)
+
 	fmt.Println(comment2)
 
 }
