@@ -6,9 +6,11 @@ import (
 	"math"
 	"math/big"
 	"math/rand"
+	"os"
 	"runtime"
 	"time"
 	"unicode"
+
 	//"os/user"
 	"example/coretypes"
 )
@@ -147,8 +149,29 @@ func main() {
 	//fmt.Println("Sales Tax Total:", taxTotal)
 	//LoanCalculator()
 //	ComplexTypes()
-	var message string= coretypes.TestCoreTypes()
-	fmt.Print(message)
+//	var message string= coretypes.TestCoreTypes()
+//	fmt.Print(message)
+//	fmt.Printf("%#v\n", coretypes.DefineArray())
+//	comp1, comp2, comp3 := coretypes.CompArrays()
+//	fmt.Println("[5]int == [5]int{0}       :", comp1)
+//	fmt.Println("[5]int == [...]int{0, 0, 0, 0, 0} :", comp2)
+//	fmt.Println("[5]int == [5]int{0, 0, 0, 0, 9} :", comp3)
+//	comp1, comp2, arr3 := coretypes.CompArrays2()
+//	fmt.Println("[10]int == [...]int{9:0} :", comp1)
+//	fmt.Println("[10]int == [10]int{1,9 :10, 4: 5}:", comp2)
+//	fmt.Println("arr3 :", arr3)
+//	fmt.Print(coretypes.Message())
+//	var arr [10]int
+//	arr = coretypes.FillArray(arr)
+//	arr = coretypes.OpArray(arr)
+//	fmt.Println(arr)
+	if longest := coretypes.FindLongest(coretypes.GetPassedArgs(3)); len(longest) > 0 {
+		fmt.Println("The longest word passed was:", longest)
+	} else {
+		fmt.Println("There was an error")
+		os.Exit(1)
+	}
+
 }
 
 
