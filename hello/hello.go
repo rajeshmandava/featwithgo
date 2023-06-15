@@ -6,7 +6,7 @@ import (
 	"math"
 	"math/big"
 	"math/rand"
-	"os"
+//	"os"
 	"runtime"
 	"time"
 	"unicode"
@@ -172,17 +172,18 @@ func main() {
 //		os.Exit(1)
 //	}
 
-	if len(os.Args) < 2 {
-		fmt.Println("User ID not passed")
-		os.Exit(1)
-	}
-	name, exists := coretypes.FindName(os.Args[1])
-	if !exists {
-		fmt.Printf("error: user %v not found ", os.Args[1])
-		os.Exit(1)
-	}
-	fmt.Println("Hi", name)
-
+//	if len(os.Args) < 2 {
+//		fmt.Println("User ID not passed")
+//		os.Exit(1)
+//	}
+//	name, exists := coretypes.FindName(os.Args[1])
+//	if !exists {
+//		fmt.Printf("error: user %v not found ", os.Args[1])
+//		os.Exit(1)
+//	}
+//	fmt.Println("Hi", name)
+	locales := coretypes.GetLocals(coretypes.GetPassedArgs2())
+	fmt.Println("Locales to use:", locales)
 }
 
 

@@ -89,3 +89,19 @@ func FindName(key string) (string,bool){
 	name, exists := users[key]
 	return name, exists
 }
+
+func GetPassedArgs2() []string{
+	var args []string
+	for i := 1; i<len(os.Args);i++{
+		args = append(args, os.Args[i])
+	}
+	return args
+}
+
+func GetLocals(extraLocals []string) []string {
+	var locales []string
+
+	locales = append(locales, "en_US", "fr_FR")
+	locales = append(locales, extraLocals...)
+	return locales
+}
