@@ -165,12 +165,23 @@ func main() {
 //	arr = coretypes.FillArray(arr)
 //	arr = coretypes.OpArray(arr)
 //	fmt.Println(arr)
-	if longest := coretypes.FindLongest(coretypes.GetPassedArgs(3)); len(longest) > 0 {
-		fmt.Println("The longest word passed was:", longest)
-	} else {
-		fmt.Println("There was an error")
+//	if longest := coretypes.FindLongest(coretypes.GetPassedArgs(3)); len(longest) > 0 {
+//		fmt.Println("The longest word passed was:", longest)
+//	} else {
+//		fmt.Println("There was an error")
+//		os.Exit(1)
+//	}
+
+	if len(os.Args) < 2 {
+		fmt.Println("User ID not passed")
 		os.Exit(1)
 	}
+	name, exists := coretypes.FindName(os.Args[1])
+	if !exists {
+		fmt.Printf("error: user %v not found ", os.Args[1])
+		os.Exit(1)
+	}
+	fmt.Println("Hi", name)
 
 }
 

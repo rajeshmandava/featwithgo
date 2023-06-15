@@ -78,3 +78,14 @@ func FindLongest(args []string) string {
 	return longest
 }
 
+var users = map[string]string{
+	"305" : "Sue",
+	"204" : "Bob",
+	"631" : "Jake",
+	"073" : "Tracy",
+}
+
+func FindName(key string) (string,bool){
+	name, exists := users[key]
+	return name, exists
+}
