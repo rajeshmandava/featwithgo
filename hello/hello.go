@@ -182,8 +182,14 @@ func main() {
 //		os.Exit(1)
 //	}
 //	fmt.Println("Hi", name)
-	locales := coretypes.GetLocals(coretypes.GetPassedArgs2())
-	fmt.Println("Locales to use:", locales)
+//	locales := coretypes.GetLocals(coretypes.GetPassedArgs2())
+//	fmt.Println("Locales to use:", locales)
+
+//	fmt.Println(coretypes.GetWeek())
+	data :=coretypes.GetData()
+	for i:=0; i< len(data); i++ {
+		fmt.Printf("%v is %v\n", data[i], coretypes.GetTypeName(data[i]))
+	}
 }
 
 

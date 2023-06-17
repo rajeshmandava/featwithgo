@@ -105,3 +105,61 @@ func GetLocals(extraLocals []string) []string {
 	locales = append(locales, extraLocals...)
 	return locales
 }
+
+type locale struct {
+	language string
+	territory string
+}
+
+func GetLocales() map[locale]struct{} {
+	supportedLocales := make(map[locale]struct{}, 5)
+	supportedLocales[locale{"en", "US"}] = struct{}{}
+	supportedLocales[locale{"en", "CN"}] = struct{}{}
+	supportedLocales[locale{"fr", "CN"}] = struct{}{}
+	supportedLocales[locale{"fr", "FR"}] = struct{}{}
+	supportedLocales[locale{"ru", "RU"}] = struct{}{}
+
+	return supportedLocales 
+}
+
+func LocaleExists(l locale) bool {
+	_, exists := GetLocales()[l]
+	return exists
+}
+
+func GetWeek() []string{
+	week := []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+	week = append(week[6:], week[:6]...)
+	return week
+}
+
+func RemoveBad() []string{
+	sli := []string{"Good", "Good", "Bad", "Good", "Good"}
+	sli = append(sli[:2], sli[:3]...)
+	return sli
+}
+
+func GetData() []interface{} {
+	return []interface{}{
+	1,
+	3.14,
+	"hello",
+	true,
+	struct{}{},
+	}
+}
+
+func GetTypeName(v interface{}) string {
+	switch v.(type) {
+	case int, int32, int64:
+		return "int"
+	case float64, float32:
+		return "float"
+	case bool:
+		return "bool"
+	case string:
+		return "string"
+	default:
+		return "unknown"
+	}
+}
