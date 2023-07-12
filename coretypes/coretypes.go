@@ -36,6 +36,7 @@ func Message() string {
 	for i:=0; i < len(arr); i++ {
 		arr[i] = arr[i] * arr[i]
 		m +=fmt.Sprintf("%v: %v\n", i, arr[i])
+}
 	}
 	return m
 }
